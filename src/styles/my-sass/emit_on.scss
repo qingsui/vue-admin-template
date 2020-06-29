@@ -1,0 +1,36 @@
+$main:#1f2f3d;
+.container{
+  padding:10px;
+  .content{
+    .title{
+      font-size:24px;
+      padding:5px;
+      color:$main;
+    }
+    .intro{
+      padding:10px 20px;
+    }
+    ul{
+      list-style:none;
+      font-size:14px;
+    }
+    li{
+      padding:8px 0px;
+      &:first-child{
+        padding-top:0px;
+      }
+      span{
+        color:$main;
+    font-size:18px;
+    font-weight:700;
+      }
+      .el-alert{
+        padding:8px 0px;
+        margin:5px;
+        span{
+          font-weight:700;
+        }
+      }
+    }
+  } 
+}

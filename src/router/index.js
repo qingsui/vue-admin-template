@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Practise from "./modules/practise"
+import elementRouter from "./modules/element"
 
 Vue.use(Router)
 
@@ -113,6 +115,14 @@ export const constantRoutes = [
             meta: { title: 'Menu1-1' }
           },
           {
+            path:"observable",
+            component:()=>import("@/views/system/practise/observable"),
+            // name:"Observable",
+            mmeta:{
+              title:'observable响应式信息管理'
+            }
+          },
+          {
             path: 'menu1-2',
             component: () => import('@/views/nested/menu1/menu1-2'),
             name: 'Menu1-2',
@@ -158,18 +168,45 @@ export const constantRoutes = [
       }
     ]
   },
-
+  Practise,
+  elementRouter,
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
 
 const createRouter = () => new Router({
-  // mode: 'history', // require service support
+  mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRoutes
 })
 
 const router = createRouter()
+
+//路由守卫
+router.beforeEach((to,from,next)=>{
+  // console.log(to,from,next)
+  next()
+})
+router.beforeResolve((to,from,next)=>{
+  // console.log(11111)
+  // console.log(to,from)
+  next()
+})
+router.afterEach((to,from)=>{
+  // console.log(22222222)
+  // console.log(to,from)
+})
+
+Vue.mixin({
+  beforeCreate(){
+    // console.log(this.$router,this.$route)
+    // if(this.$router.meta.title){
+    //   console.log('hello 有title')
+    // }else{
+    //   console.log('没有title')
+    // }
+  }
+})
 
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
